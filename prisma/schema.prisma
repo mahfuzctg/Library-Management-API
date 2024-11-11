@@ -35,3 +35,19 @@ model Member {
 
   @@map("members")
 }
+
+
+model BorrowRecord {
+  borrowId   String    @id @default(uuid())
+  borrowDate DateTime  @default(now())
+  returnDate DateTime?
+
+  bookId    String
+ 
+  memberId  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("borrowRecords")
+}
