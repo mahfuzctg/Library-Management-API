@@ -18,11 +18,10 @@ model Book {
   availableCopies Int
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
-
+  BorrowRecord    BorrowRecord[]
 
   @@map("books")
 }
-
 
 model Member {
   memberId       String         @id @default(uuid())
@@ -31,11 +30,10 @@ model Member {
   phone          String
   membershipDate DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
- 
+  BorrowRecord   BorrowRecord[]
 
   @@map("members")
 }
-
 
 model BorrowRecord {
   borrowId   String    @id @default(uuid())
@@ -43,9 +41,9 @@ model BorrowRecord {
   returnDate DateTime?
 
   bookId    String
- 
+  book      Book     @relation(fields: [bookId], references: [bookId])
   memberId  String
-
+  member    Member   @relation(fields: [memberId], references: [memberId])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
