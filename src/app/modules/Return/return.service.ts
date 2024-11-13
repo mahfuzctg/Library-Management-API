@@ -2,8 +2,9 @@ import httpStatus from "http-status";
 import AppError from "../../utils/AppError";
 import prisma from "../../utils/prisma";
 
+// return book
 const returnBook = async (borrowId: string) => {
-  const borrow = await prisma.borrowRecord.findUniqueOrThrow({
+  const borrow = await prisma.borrowRecord.findUnique({
     where: {
       borrowId,
     },
